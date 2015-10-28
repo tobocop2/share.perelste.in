@@ -1,12 +1,11 @@
 README
 ===================
-## Author Tobias Perelstein
 
 About
 -----
 I wanted to build an application that lets users anonymously share files without any sort of account registration.
 This started off simply as an upload server for a coding challenge, but I wound up having a lot of fun with it and decided that it was 
-time to make my dream a reality. At the moment the application works like Snapchat where all files are deleted after they are downloaded.
+time to make my idea a reality. At the moment the application works like Snapchat where all files are deleted after they are downloaded.
 I may change files to have expiration times or maybe maximum download times. Files can be password protected by the api, but this functionality is
 not currently implemented in the user facing application.
 
@@ -43,7 +42,7 @@ has two endpoints at the moment, but I designed it with big things in mind. Curr
 
 The main module exposes all the extensions that are used throughout the application.
 
-All files are not served by Flask but by nginx since nginx is tremendously faster than flask and is much better for serving static content  In order to do this, I needed flask to send a specific header which provides a redirect to nginx, which in turn is aliases to a directory on the filesystem. This way, flask does not have anything to do with the file serving and is only used for application logic. 
+All files are not served by Flask but by nginx since nginx is tremendously faster than flask and is much better for serving static content.  In order to do this, I needed flask to send a specific header which provides a redirect to nginx, which in turn is aliases to a directory on the filesystem. This way, flask does not have anything to do with the file serving and is only used for application logic. 
 
 Models
 ----------------
@@ -68,7 +67,7 @@ Upon sending a PUT request, I verify to see if there is a file sent with the req
 Regardless of whether or not a password is sent, I take the form value for the password key and send it off to the add_file method of the File class which is a static method. This method creates a new file record in the database and performs all the necessary options such as hashing the password if it exists, creating the filehash, etc. The file is then written to the filesystem and a 201 success response is returned containing a success message as well as a download url for the GET
 request
 
-Upon sending a GET request to the url returns from the PUT, the filehash in the url is verified and the password is validated if the file is password protected. If the file is not found a 404 response is returned. If, the file is no longer available, a 410 response is returned. if the file is password protected but no password was sent, a 401 response is returned, and if the password is incorrect, a 401 response is returned. If all goes well, the file hash is verified
+Upon sending a GET request to the url that is returned from the PUT, the filehash in the url is verified and the password is validated if the file is password protected. If the file is not found a 404 response is returned. If, the file is no longer available, a 410 response is returned. if the file is password protected but no password was sent, a 401 response is returned, and if the password is incorrect, a 401 response is returned. If all goes well, the file hash is verified
 against the database and the file is found on the filesystem. The mimetype is found from the file using the built in python mimetype library and the response is returned. 
 
 API OVERVIEW
