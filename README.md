@@ -13,11 +13,11 @@ Production
 -------------
 The application is currently a WIP and is available for testing with BASE URL:
 
-[http://tobias.perelste.in:8002](http://tobias.perelste.in:8002)
+[http://share.perelste.in](http://share.perelste.in)
 
 For those that would like to use the api, the base url is here:
 
-[http://tobias.perelste.in:8002/api/v1.0/](http://tobias.perelste.in:8002/api/v1.0/)
+[http://share.perelste.in/api/v1.0/](http://share.perelste.in/api/v1.0/)
 
 Overall API usage is documented at the bottom of this README.
 
@@ -73,7 +73,7 @@ against the database and the file is found on the filesystem. The mimetype is fo
 API OVERVIEW
 ------------
 # API BASE URL
-http://tobias.perelste.in:8002/api/v1.0/
+http://share.perelste.in/api/v1.0/
 
 # PUT
 ## Upload File [/file] 
@@ -92,7 +92,7 @@ import requests
 # If no password is set during upload, do not have to send data dictionary
 # with the request. The data dictionary acts as the form data
 
-url = 'http://tobias.perelste.in:8002/api/v1.0/file'
+url = 'http://share.perelste.in/api/v1.0/file'
 
 files = {'file': open('report.xls', 'rb')}
 data = {'password': 'hello world'}
@@ -106,7 +106,7 @@ res = requests.put(url, files=files, data=data)
 
         {
             "status": "File Uploaded Successfully",
-            "url": "http://tobias.perelste.in:8002/api/v1.0/file/d1c5b168e5782c80fe36f601a9df3b47"
+            "url": "http://share.perelste.in/api/v1.0/file/d1c5b168e5782c80fe36f601a9df3b47"
         }
 + Response 400 (application/json)
 
@@ -141,7 +141,7 @@ import requests
 # If no password was set during upload, do not have to send params dictionary
 # with the request
 
-url = 'http://tobias.perelste.in:8002/api/v1.0/file/d1c5b168e5782c80fe36f601a9df3b47'
+url = 'http://share.perelste.in/api/v1.0/file/d1c5b168e5782c80fe36f601a9df3b47'
 
 params = {'password': 'hello world'}
 
